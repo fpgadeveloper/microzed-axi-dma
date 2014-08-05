@@ -1,5 +1,5 @@
 #
-# build.tcl: Tcl script for re-creating project 'microzed_base'
+# build.tcl: Tcl script for re-creating project 'microzed_axi_dma'
 #
 #*****************************************************************************************
 
@@ -7,13 +7,13 @@
 set origin_dir [file dirname [info script]]
 
 # Create project
-create_project microzed_base $origin_dir/microzed_base
+create_project microzed_axi_dma $origin_dir/microzed_axi_dma
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
 
 # Set project properties
-set obj [get_projects microzed_base]
+set obj [get_projects microzed_axi_dma]
 set_property "board_part" "em.avnet.com:microzed:part0:1.0" $obj
 set_property "default_lib" "xil_defaultlib" $obj
 set_property "simulator_language" "Mixed" $obj
@@ -85,5 +85,5 @@ set obj [get_runs impl_1]
 # set the current impl run
 current_run -implementation [get_runs impl_1]
 
-puts "INFO: Project created:microzed_base"
+puts "INFO: Project created:microzed_axi_dma"
 
