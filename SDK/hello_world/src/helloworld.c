@@ -167,7 +167,7 @@ int main(void)
 
 	init_platform();
 
-	xil_printf("\r\n--- Entering maino() --- \r\n");
+	xil_printf("\r\n--- Entering main() --- \r\n");
 
 	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
 	if (!Config) {
@@ -189,27 +189,23 @@ int main(void)
 		return XST_FAILURE;
 	}
 
-	xil_printf("TxSetup \r\n");
 	Status = TxSetup(&AxiDma);
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
-	xil_printf("RxSetup \r\n");
 	Status = RxSetup(&AxiDma);
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
 	/* Send a packet */
-	xil_printf("SendPacket \r\n");
 	Status = SendPacket(&AxiDma);
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
 	/* Check DMA transfer result */
-	xil_printf("CheckDmaResult \r\n");
 	Status = CheckDmaResult(&AxiDma);
 
 	xil_printf("AXI DMA SG Polling Test %s\r\n",
@@ -579,19 +575,16 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr)
 	int FreeBdCount;
 	int Status;
 
-	xil_printf("XAxiDma_GetTxRing\r\n");
 	TxRingPtr = XAxiDma_GetTxRing(AxiDmaInstPtr);
 	RxRingPtr = XAxiDma_GetRxRing(AxiDmaInstPtr);
 
 	/* Wait until the one BD TX transaction is done */
-	xil_printf("XAxiDma_BdRingFromHw\r\n");
 	while ((ProcessedBdCount = XAxiDma_BdRingFromHw(TxRingPtr,
 						       XAXIDMA_ALL_BDS,
 						       &BdPtr)) == 0) {
 	}
 
 	/* Free all processed TX BDs for future transmission */
-	xil_printf("XAxiDma_BdRingFree\r\n");
 	Status = XAxiDma_BdRingFree(TxRingPtr, ProcessedBdCount, BdPtr);
 	if (Status != XST_SUCCESS) {
 		xil_printf("Failed to free %d tx BDs %d\r\n",
@@ -600,21 +593,18 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr)
 	}
 
 	/* Wait until the data has been received by the Rx channel */
-	xil_printf("Wait until the data has been received by the Rx channel\r\n");
 	while ((ProcessedBdCount = XAxiDma_BdRingFromHw(RxRingPtr,
 						       XAXIDMA_ALL_BDS,
 						       &BdPtr)) == 0) {
 	}
 
 	/* Check received data */
-	xil_printf("Check received data\r\n");
 	if (CheckData() != XST_SUCCESS) {
 
 		return XST_FAILURE;
 	}
 
 	/* Free all processed RX BDs for future transmission */
-	xil_printf("XAxiDma_BdRingFree\r\n");
 	Status = XAxiDma_BdRingFree(RxRingPtr, ProcessedBdCount, BdPtr);
 	if (Status != XST_SUCCESS) {
 		xil_printf("Failed to free %d rx BDs %d\r\n",
@@ -627,7 +617,6 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr)
 	 *    - Allocate all free RX BDs
 	 *    - Pass the BDs to RX channel
 	 */
-	xil_printf("XAxiDma_BdRingGetFreeCnt\r\n");
 	FreeBdCount = XAxiDma_BdRingGetFreeCnt(RxRingPtr);
 	Status = XAxiDma_BdRingAlloc(RxRingPtr, FreeBdCount, &BdPtr);
 	if (Status != XST_SUCCESS) {
@@ -635,7 +624,6 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr)
 		return XST_FAILURE;
 	}
 
-	xil_printf("XAxiDma_BdRingToHw\r\n");
 	Status = XAxiDma_BdRingToHw(RxRingPtr, FreeBdCount, BdPtr);
 	if (Status != XST_SUCCESS) {
 		xil_printf("Submit %d rx BDs failed %d\r\n", FreeBdCount, Status);
