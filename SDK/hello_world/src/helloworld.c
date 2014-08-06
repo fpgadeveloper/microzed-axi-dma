@@ -484,7 +484,7 @@ static int SendPacket(XAxiDma * AxiDmaInstPtr)
 		return XST_FAILURE;
 	}
 
-#if (XPAR_AXIDMA_0_SG_INCLUDE_STSCNTRL_STRM == 0)
+#if (XPAR_AXIDMA_0_SG_INCLUDE_STSCNTRL_STRM == 1)
 	Status = XAxiDma_BdSetAppWord(BdPtr,
 	    XAXIDMA_LAST_APPWORD, MAX_PKT_LEN);
 
