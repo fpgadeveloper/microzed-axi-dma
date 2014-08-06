@@ -16,20 +16,21 @@ How to build the SDK workspace
 
 ### Create the hardware platform
 
-1. Run Xilinx SDK
-2. Select this folder as your SDK workspace (the folder where this
-readme file is located).
-3. SDK will then open an empty workspace. Select File->New->Project.
-4. In the New Project Wizard, select Xilinx->Hardware Platform
-Specification. Click Next.
-5. In the Target Hardware Specification window, click Browse.
-6. Browse to the "EDK/SDK/SDK_Export/hw" folder and select the
-"system.xml" file.
-7. The project name should be automatically named "EDK_hw_platform".
-Make sure that the name is spelt exactly like that and click Finish.
+1. Run Vivado and open the project
+2. Select File->Export->Export Hardware. Remember where you choose
+to save the export (or just choose "internal to project").
+3. Select File->Launch SDK. Now select the location of the exported
+hardware (done in previous step) and select the SDK folder as your
+SDK workspace (the folder where this readme file is located).
+3. SDK will then open an empty workspace and it should automatically
+build the Hardware Platform Specification if you selected the correct
+location for the export files above.
+7. The hardware platform should be automatically named
+"design_1_wrapper_hw_platform_0". Make sure that the name is spelt
+exactly like that and click Finish.
 
 After completing those steps you should have an SDK workspace with a
-single project named "EDK_hw_platform".
+single project named "design_1_wrapper_hw_platform_0".
 
 ### Import the application and BSP
 
