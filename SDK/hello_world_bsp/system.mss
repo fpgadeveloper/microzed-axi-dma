@@ -1,6 +1,4 @@
 
- PARAMETER NAME = E:\Github\fpgadeveloper\microzed-axi-dma\SDK\hello_world_bsp\system.mss
-
  PARAMETER VERSION = 2.2.0
 
 
