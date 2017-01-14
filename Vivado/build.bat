@@ -1,3 +1,3 @@
-SET vivado=C:\Xilinx\Vivado\2016.3\bin\vivado.bat
+SET vivado=C:\Xilinx\Vivado\2016.4\bin\vivado.bat
 %vivado% -mode batch -source build.tcl
 pause
