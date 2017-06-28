@@ -13,7 +13,7 @@ http://www.fpgadeveloper.com/2014/08/using-the-axi-dma-in-vivado.html
 
 ## Requirements
 
-* Vivado 2017.1
+* Vivado 2017.2
 * [MicroZed 7Z010](http://microzed.org "MicroZed 7Z010")
 
 ## Build instructions
@@ -61,7 +61,7 @@ https://github.com/fpgadeveloper/microzed-qgige/tree/master/Vivado/boards/board_
 * `microzed_7010`
 * `microzed_7020`
 
-Copy those folders and their contents into the `C:\Xilinx\Vivado\2017.1\data\boards\board_files` folder (this may
+Copy those folders and their contents into the `C:\Xilinx\Vivado\2017.2\data\boards\board_files` folder (this may
 be different on your machine, depending on your Vivado installation directory).
 
 ## Troubleshooting
